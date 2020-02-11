@@ -1,8 +1,10 @@
 [Unit]
-Description=Invoke aplay from /dev/zero at system start.
+Description=Starting the StereoPi software
 
 [Service]
 ExecStart=sudo /home/pi/stereopi/stereopi.py
+Restart=always
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
