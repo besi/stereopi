@@ -37,6 +37,10 @@ def on_key_pressed(key):
         pixels[0] = (0, 0, 0)
     else:
         pixels[0] = (int(255 * dimmer), 0, int(255 * dimmer))
+    elif key == 'KEY_VOLUMEUP':
+        os.system("amixer set PCM 5%+")
+    elif key == 'KEY_VOLUMEDOWN':
+        os.system("amixer set PCM 5%-")
 
 
 service = RemoteService()
