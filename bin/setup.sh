@@ -38,3 +38,9 @@ sudo systemctl enable stereopi
 sudo cp dist/etc/systemd/system/tuner.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable tuner
+
+# mplayer remote control file
+mkdir -p $HOME/.mplayer
+mkfifo $HOME/.mplayer/fifo
+cp dist/homedir/.mplayer/config $HOME/.mplayer/
+sudo ln -s $HOME/stereopi/bin/mpc.sh /usr/bin/mpc
