@@ -59,6 +59,12 @@ def on_key_pressed(key):
         os.system('/usr/bin/mpc pause')
     elif key == 'KEY_VOLUMEUP':
         os.system("amixer set PCM 5%+")
+    elif key == 'KEY_INFO':
+        os.system("sudo systemctl stop tuner")
+        os.system("say stopping tuner")
+    elif key == 'KEY_TUNER':
+        os.system("sudo systemctl restart tuner")
+        os.system("say starting tuner")
     elif key == 'KEY_VOLUMEDOWN':
         os.system("amixer set PCM 5%-")
     elif key == 'KEY_NEXTSONG':
