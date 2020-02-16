@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# curl -sS https://raw.githubusercontent.com/besi/stereopi/master/bin/setup.sh | bash
+sudo apt install git -y
+git clone https://github.com/besi/stereopi.git && cd stereopi
+
+# Install say binary
+sudo apt install espeak -y
+sudo ln -s $HOME/stereopi/bin/say.sh /usr/bin/say
+chmod +x /usr/bin/say
+/usr/bin/say installed espeak
+
 # This needs to be run from the root of the project
 sudo apt install mplayer -y
 sudo apt install screen -y
