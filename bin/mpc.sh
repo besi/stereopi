@@ -1,3 +1,3 @@
 #!/bin/sh
-echo "$@" > ~/.mplayer/fifo
+echo "$@" > /home/pi/.mplayer/fifo
 

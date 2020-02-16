@@ -32,6 +32,7 @@ def on_key_pressed(key):
         pixels[0] = (0, 0, int(255 * dimmer))
     elif key == 'KEY_PLAYPAUSE':
         pixels[0] = (0, 0, 0)
+        os.system('/usr/bin/mpc pause')
     elif key == 'KEY_VOLUMEUP':
         os.system("amixer set PCM 5%+")
     elif key == 'KEY_VOLUMEDOWN':
