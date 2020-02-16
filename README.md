@@ -17,8 +17,4 @@ Available commands
 
     mplayer -input cmdlist
 
-
-
-- Pin 25 crash
-- Pin 24 RuntimeError: ws2811_init failed with code -11 (Selected GPIO not possible)
 [stereopi]: http://github.com/besi/stereopi
