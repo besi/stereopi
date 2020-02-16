@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-/usr/bin/amixer set PCM 30%
-/usr/bin/mplayer -prefer-ipv4 -cache 128 -playlist http://www.radioparadise.com/musiclinks/rp_128aac.m3u -noconsolecontrols -really-quiet -nolirc -slave
+/usr/bin/amixer set PCM 20%
+
+URL=http://stream.radioparadise.com/mellow-192
+/usr/bin/mplayer $URL -cache 192 -nolirc -prefer-ipv4 -really-quiet -slave
