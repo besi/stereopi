@@ -31,6 +31,19 @@ def run_alarm(time):
 def set_alarm(alarm):
     threading.Thread(target=run_alarm, args=(alarm,)).start()
 
+
+def timer():
+    timer_mins = 20
+    os.system('sudo systemctl start tuner')
+    os.system(f"say Timer {timer_mins} minutes")
+    time.sleep(timer_mins * 60)
+    os.system('sudo systemctl stop tuner')
+
+
+def start_timer():
+    threading.Thread(target=timer).start()
+
+
 def on_key_pressed(key):
     print(key)
     if key == 'KEY_RED':
@@ -48,6 +61,8 @@ def on_key_pressed(key):
         os.system("amixer set PCM 5%+")
     elif key == 'KEY_VOLUMEDOWN':
         os.system("amixer set PCM 5%-")
+    elif key == 'KEY_NEXTSONG':
+        start_timer()
     elif key == 'KEY_HOMEPAGE':
         alarm = '6:15'
         os.system(f"say setting alarm to {alarm}")
