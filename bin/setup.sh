@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # This needs to be run from the root of the project
+sudo apt install mplayer -y
+sudo apt install screen -y
+sudo apt install python3 python3-pip python3-dbus -y
 
 #  NeoPixel support requires running with sudo
 sudo pip3 install paho-mqtt
