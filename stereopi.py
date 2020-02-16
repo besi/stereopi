@@ -16,9 +16,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 print("Starting...")
-x = 0
-increment = 0.1
-sleep = 0.01
 dimmer = .04
 
 from remote_service import RemoteService
@@ -44,13 +41,16 @@ def on_key_pressed(key):
 
 
 service = RemoteService()
-service.start_listening(on_key_pressed)
+service.start_listening(on_key_pressed) # This call is blocking so we never come here
+
+x = 0
+increment = 0.1
+sleep = 0.01
 
 while True:
 
     if GPIO.input(switch_pin) == 0:
-        dimmer = 1 - dimmer
-        time.sleep(.2)
+        pixels[0] = (0, 0, int(255 * dimmer))
     blue = abs(int(math.sin(x) * 255 * dimmer))
     red = abs(int(math.cos(x) * 255 * dimmer))
     # green = abs(int(math.cos(x + math.pi/4)*255*dimmer))
