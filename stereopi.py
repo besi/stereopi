@@ -1,11 +1,14 @@
 #!/usr/bin/python3 -u
 import math
 import os
+import threading
 import time
 
 import RPi.GPIO as GPIO
 import board
 import neopixel
+
+import wakeup
 
 switch_pin = 13
 led_pin = board.D12
@@ -19,6 +22,14 @@ print("Starting...")
 dimmer = .04
 
 from remote_service import RemoteService
+
+
+def run_alarm(time):
+    wakeup.set_alarmclock(time)
+
+
+def set_alarm(alarm):
+    threading.Thread(target=run_alarm, args=(alarm,)).start()
 
 def on_key_pressed(key):
     print(key)
@@ -37,6 +48,10 @@ def on_key_pressed(key):
         os.system("amixer set PCM 5%+")
     elif key == 'KEY_VOLUMEDOWN':
         os.system("amixer set PCM 5%-")
+    elif key == 'KEY_HOMEPAGE':
+        alarm = '6:15'
+        os.system(f"say setting alarm to {alarm}")
+        set_alarm(alarm)
     else:
         pixels[0] = (int(255 * dimmer), 0, int(255 * dimmer))
 
