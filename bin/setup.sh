@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Install I2S driver
+curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2samp.sh | bash
+
 # curl -sS https://raw.githubusercontent.com/besi/stereopi/master/bin/setup.sh | bash
 sudo apt install git -y
 git clone https://github.com/besi/stereopi.git && cd stereopi
