@@ -44,3 +44,4 @@ mkdir -p $HOME/.mplayer
 mkfifo $HOME/.mplayer/fifo
 cp dist/homedir/.mplayer/config $HOME/.mplayer/
 sudo ln -s $HOME/stereopi/bin/mpc.sh /usr/bin/mpc
+sudo chmod +x /usr/bin/mpc
