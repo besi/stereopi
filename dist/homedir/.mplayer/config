@@ -1,0 +1,2 @@
+# mkfifo ~/.mplayer/fifo
+input=file=/home/pi/.mplayer/fifo
