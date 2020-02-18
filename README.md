@@ -1,5 +1,7 @@
 # [stereopi][]
 
+![](stereopi.jpg)
+
 Playing music on a Raspberry Pi zero
 
 # Installation
