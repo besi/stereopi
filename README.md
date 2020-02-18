@@ -1,6 +1,6 @@
 # [stereopi][]
 
-![][stereopi]
+![image][]
 
 Playing music on a Raspberry Pi zero
 
@@ -21,4 +21,4 @@ Available commands
 
 [stereopi]: http://github.com/besi/stereopi
 
-[stereopi]: https://raw.githubusercontent.com/besi/stereopi/master/stereopi.jpg
+[image]: https://raw.githubusercontent.com/besi/stereopi/master/stereopi.jpg
