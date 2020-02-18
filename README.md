@@ -1,6 +1,6 @@
 # [stereopi][]
 
-![](stereopi.jpg)
+![][stereopi]
 
 Playing music on a Raspberry Pi zero
 
@@ -20,3 +20,5 @@ Available commands
     mplayer -input cmdlist
 
 [stereopi]: http://github.com/besi/stereopi
+
+[stereopi]: https://raw.githubusercontent.com/besi/stereopi/master/stereopi.jpg
