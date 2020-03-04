@@ -14,6 +14,7 @@ def current_time():
 
 def ishtime(hours, minutes):
     hours = hours % 24
+    print(str(hours) + ':' + str(minutes))
     start = 'It is'
     accuracies = ['exactly', '']
     numbers = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
@@ -56,7 +57,8 @@ def ishtime(hours, minutes):
         result = "%s roughly %s %s %s" % (start, random_middle, next_hour, ending)
     else:
         result = "%s roughly %s minutes after %s %s" % (start, random_middle, hour, ending)
+    print(result)
     return result
 
 
-print(ishtime(hour, minute))
+# print(ishtime(hour, minute))
