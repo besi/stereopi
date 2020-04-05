@@ -18,3 +18,8 @@ Available commands
     mplayer -input cmdlist
 
 [stereopi]: http://github.com/besi/stereopi
+
+## Services
+
+sudo systemctl restart raspotify.service 
+sudo systemctl restart shairport-sync.service

@@ -12,11 +12,10 @@ class RemoteService(object):
 
     is_listening = False
 
-    def start_listening(self, on_key_pressed):
+    def start_listening(self, on_key_pressed, device = '/dev/input/event1'):
 
-        device = evdev.InputDevice('/dev/input/event1')
-        if 'lirc' in device.name:
-            device = evdev.InputDevice('/dev/input/event0')
+        # TODO: Make sure the event exists and wait until it's ready.
+        device = evdev.InputDevice(device)
         print(device)
 
         down = 1
@@ -38,6 +37,7 @@ class RemoteService(object):
 
                 print(key)
                 on_key_pressed(key)
+
 
     def stop_listener(self):
         RemoteService.is_listening = False

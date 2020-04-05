@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+sudo apt update
+sudo apt upgrade
+
 # Install I2S driver
 curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2samp.sh | bash
 
@@ -45,3 +48,23 @@ mkfifo $HOME/.mplayer/fifo
 cp dist/homedir/.mplayer/config $HOME/.mplayer/
 sudo ln -s $HOME/stereopi/bin/mpc.sh /usr/bin/mpc
 sudo chmod +x /usr/bin/mpc
+
+# Install Raspotify
+curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+touch /var/log/raspotify.log
+sudo ln -s /var/log/raspotify.log /home/pi/stereopi/log/raspotify.log
+sudo chown pi:pi /home/pi/stereopi/log/raspotify.log
+
+# Install shairport-sync for Airplay playback
+sudo apt-get install autoconf automake avahi-daemon build-essential git libasound2-dev libavahi-client-dev libconfig-dev libdaemon-dev libpopt-dev libssl-dev libtool xmltoman -y
+cd
+git clone https://github.com/mikebrady/shairport-sync.git
+cd shairport-sync
+autoreconf -i -f
+./configure --with-alsa --with-avahi --with-ssl=openssl --with-systemd --with-metadata
+make
+sudo make install
+sudo service shairport-sync enable --now
+
+# Install MQTT
+sudo apt-get install mosquitto mosquitto-clients -y

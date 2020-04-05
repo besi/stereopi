@@ -46,7 +46,13 @@ def start_timer():
 
 def on_key_pressed(key):
     print(key)
-    if key == 'KEY_RED':
+    if key == 'KEY_': pass
+    if key == 'KEY_FASTFORWARD': os.system('curl -X POST "https://api.spotify.com/v1/me/player/next" -H "Authorization: Bearer BQDy-sPybW8wtFbDhA9VfbTN1PSnoNZ6RHTzQrykoQgbvSXiSjbpotv3Tx6QzVzFt0WtNYXBgANRULfVczCpq9tjNfw_wpSMRwFNhW4fLyBXODHcs-r_C8JSQwyhcSIHdjS7ntgGE7scyAg" &')
+    if key == 'KEY_REWIND': os.system('curl -X POST "https://api.spotify.com/v1/me/player/previous" -H "Authorization: Bearer BQDy-sPybW8wtFbDhA9VfbTN1PSnoNZ6RHTzQrykoQgbvSXiSjbpotv3Tx6QzVzFt0WtNYXBgANRULfVczCpq9tjNfw_wpSMRwFNhW4fLyBXODHcs-r_C8JSQwyhcSIHdjS7ntgGE7scyAg" &')
+
+    if key == 'KEY_SEARCH':
+         os.system('say `sudo python3 time_to_speech.py` &')
+    elif key == 'KEY_RED':
         pixels[0] = (int(255 * dimmer), 0, 0)
     elif key == 'KEY_GREEN':
         pixels[0] = (0, int(255 * dimmer), 0)
@@ -56,13 +62,15 @@ def on_key_pressed(key):
         pixels[0] = (0, 0, int(255 * dimmer))
     elif key == 'KEY_PLAYPAUSE':
         pixels[0] = (0, 0, 0)
-        os.system('/usr/bin/mpc pause')
+        os.system('/usr/bin/mpc pause &')
     elif key == 'KEY_VOLUMEUP':
         os.system("amixer set PCM 5%+")
     elif key == 'KEY_INFO':
         os.system("sudo systemctl stop tuner")
-        os.system("say stopping tuner")
+        os.system("sudo systemctl restart shairport-sync")
+        os.system("sudo systemctl restart raspotify")
     elif key == 'KEY_TUNER':
+        os.system('sudo systemctl restart raspotify')
         os.system("sudo systemctl restart tuner")
         os.system("say starting tuner")
     elif key == 'KEY_VOLUMEDOWN':

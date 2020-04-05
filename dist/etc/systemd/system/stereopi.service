@@ -2,12 +2,10 @@
 Description=Starting the StereoPi software
 
 [Service]
-User=root
-Group=root
-ExecStart=/home/pi/stereopi/stereopi.py
+WorkingDirectory=/home/pi/stereopi
+ExecStart=sudo /home/pi/stereopi/stereopi.py
 Restart=always
 RestartSec=3
-
 
 [Install]
 WantedBy=multi-user.target
