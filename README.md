@@ -1,5 +1,7 @@
 # [stereopi][]
 
+![image][]
+
 Playing music on a Raspberry Pi zero
 
 # Installation
@@ -23,3 +25,5 @@ Available commands
 
 sudo systemctl restart raspotify.service 
 sudo systemctl restart shairport-sync.service
+
+[image]: https://raw.githubusercontent.com/besi/stereopi/master/stereopi.jpg
