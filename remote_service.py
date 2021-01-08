@@ -1,5 +1,7 @@
-import evdev
 
+import evdev
+from selectors import DefaultSelector, EVENT_READ
+import selectors
 
 class RemoteService(object):
     __instance = None
@@ -12,11 +14,16 @@ class RemoteService(object):
 
     is_listening = False
 
-    def start_listening(self, on_key_pressed, device = '/dev/input/event1'):
+    def start_listening(self, on_key_pressed, device_identifier = 'Swisscom'):
+        all_devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
 
-        # TODO: Make sure the event exists and wait until it's ready.
-        device = evdev.InputDevice(device)
-        print(device)
+        devices = []
+        selector = selectors.DefaultSelector()
+
+        for device in all_devices:
+            if device_identifier in device.name:
+                devices.append(device)
+                selector.register(device, selectors.EVENT_READ)
 
         down = 1
         up = 0
@@ -24,20 +31,22 @@ class RemoteService(object):
 
         RemoteService.is_listening = True
 
-        for event in device.read_loop():
 
-            if not RemoteService.is_listening: break
-            if event.type == evdev.ecodes.EV_KEY and event.value == down:
-                # print(evdev.categorize(event))
-                key = evdev.ecodes.KEY[event.code]
+        while True:
+            for key, mask in selector.select():
+                device = key.fileobj
+                for event in device.read():
+                    if not RemoteService.is_listening: break
+                    if event.type == evdev.ecodes.EV_KEY and event.value == down:
+                        key = evdev.ecodes.KEY[event.code]
 
-                # The mute key is special since it will produce an array of keys
-                if event.code == 113:
-                    key = 'KEY_MUTE'
+                        if event.code == 113:
+                            key = 'KEY_MUTE'
 
-                print(key)
-                on_key_pressed(key)
+                        print(key)
+                        on_key_pressed(key)
 
 
     def stop_listener(self):
         RemoteService.is_listening = False
+
