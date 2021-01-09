@@ -14,7 +14,10 @@ def current_time():
 
 def ishtime(hours, minutes):
     hours = hours % 24
-    return(str(hours) + ' and ' + str(minutes) + 'minutes')
+
+    if minutes == 0:
+        return(str(hours) + ' sharp')
+    return(str(hours) + ' and ' + str(minutes) + ' minutes')
 
 
 print(ishtime(hour, minute))
