@@ -32,17 +32,30 @@ def set_alarm(alarm):
     threading.Thread(target=run_alarm, args=(alarm,)).start()
 
 
-def timer():
+def timer(silent = False):
     timer_mins = 20
-    os.system('sudo systemctl start tuner')
+
+    if silent:
+        os.system('sudo systemctl stop tuner')
+        os.system(f"say Silent")
+    else:
+        os.system('sudo systemctl start tuner')
+
     os.system(f"say Timer {timer_mins} minutes")
     time.sleep(timer_mins * 60)
-    os.system('sudo systemctl stop tuner')
+
+    if silent:
+        os.system('sudo systemctl start tuner')
+    else:
+        os.system('sudo systemctl stop tuner')
+
 
 
 def start_timer():
     threading.Thread(target=timer).start()
 
+def start_silent_timer():
+    threading.Thread(target=timer,args=(True,)).start()
 
 def on_key_pressed(key):
     print(key)
@@ -65,6 +78,8 @@ def on_key_pressed(key):
         os.system('/usr/bin/mpc pause &')
     elif key == 'KEY_VOLUMEUP':
         os.system("amixer set PCM 5%+")
+    elif key == 'KEY_RECORD':
+        os.system("cd /home/pi/sleepynotes/ && python3 sleepy.py &")
     elif key == 'KEY_INFO':
         os.system("sudo systemctl stop tuner")
         os.system("sudo systemctl restart shairport-sync")
@@ -75,6 +90,8 @@ def on_key_pressed(key):
         os.system("say starting tuner")
     elif key == 'KEY_VOLUMEDOWN':
         os.system("amixer set PCM 5%-")
+    elif key == 'KEY_PREVIOUSSONG':
+        start_silent_timer()
     elif key == 'KEY_NEXTSONG':
         start_timer()
     elif key == 'KEY_HOMEPAGE':
