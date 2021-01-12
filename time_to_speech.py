@@ -17,7 +17,7 @@ def ishtime(hours, minutes):
 
     if minutes == 0:
         return(str(hours) + ' sharp')
-    return(str(hours) + ' and ' + str(minutes) + ' minutes')
+    return(str(hours) + ' . . . and ' + str(minutes) + ' minutes')
 
 
 print(ishtime(hour, minute))
