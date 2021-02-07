@@ -79,7 +79,7 @@ def on_key_pressed(key):
     elif key == 'KEY_VOLUMEUP':
         os.system("amixer set PCM 5%+")
     elif key == 'KEY_RECORD':
-        os.system("cd /home/pi/sleepynotes/ && python3 sleepy.py &")
+        os.system("say record")
     elif key == 'KEY_INFO':
         os.system("sudo systemctl stop tuner")
         os.system("sudo systemctl restart shairport-sync")
