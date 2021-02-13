@@ -18,10 +18,14 @@ pixels = neopixel.NeoPixel(led_pin, 1)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+
 print("Starting...")
 dimmer = .04
 
 from remote_service import RemoteService
+
+def button_pressed():
+    os.system('say button')
 
 
 def run_alarm(time):
@@ -104,6 +108,8 @@ def on_key_pressed(key):
 
 service = RemoteService()
 service.start_listening(on_key_pressed) # This call is blocking so we never come here
+GPIO.add_event_detect(switch_pin, GPIO.RISING, callback=button_pressed)  
+
 
 x = 0
 increment = 0.1
