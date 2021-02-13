@@ -24,10 +24,6 @@ dimmer = .04
 
 from remote_service import RemoteService
 
-def button_pressed():
-    os.system('say button')
-
-
 def run_alarm(time):
     wakeup.set_alarmclock(time)
 
@@ -53,7 +49,12 @@ def timer(silent = False):
     else:
         os.system('sudo systemctl stop tuner')
 
+def playpause():
+    pixels[0] = (0, 0, 0)
+    os.system('/usr/bin/mpc pause &')
 
+def button_pressed(channel):
+    playpause()
 
 def start_timer():
     threading.Thread(target=timer).start()
@@ -78,8 +79,7 @@ def on_key_pressed(key):
     elif key == 'KEY_BLUE':
         pixels[0] = (0, 0, int(255 * dimmer))
     elif key == 'KEY_PLAYPAUSE':
-        pixels[0] = (0, 0, 0)
-        os.system('/usr/bin/mpc pause &')
+        playpause()
     elif key == 'KEY_VOLUMEUP':
         os.system("amixer set PCM 5%+")
     elif key == 'KEY_RECORD':
@@ -105,11 +105,9 @@ def on_key_pressed(key):
     else:
         pixels[0] = (int(255 * dimmer), 0, int(255 * dimmer))
 
-
+GPIO.add_event_detect(switch_pin, GPIO.FALLING, callback=button_pressed, bouncetime=250)
 service = RemoteService()
 service.start_listening(on_key_pressed) # This call is blocking so we never come here
-GPIO.add_event_detect(switch_pin, GPIO.RISING, callback=button_pressed)  
-
 
 x = 0
 increment = 0.1
