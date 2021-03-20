@@ -20,10 +20,11 @@ class RemoteService(object):
         devices = []
         selector = selectors.DefaultSelector()
 
-        for device in all_devices:
-            if device_identifier in device.name:
-                devices.append(device)
-                selector.register(device, selectors.EVENT_READ)
+        while len(devices) == 0:
+            for device in all_devices:
+                if device_identifier in device.name:
+                    devices.append(device)
+                    selector.register(device, selectors.EVENT_READ)
 
         down = 1
         up = 0
