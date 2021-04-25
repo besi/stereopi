@@ -102,6 +102,13 @@ def on_key_pressed(key):
         alarm = '6:15'
         os.system(f"say setting alarm to {alarm}")
         set_alarm(alarm)
+    elif key == 'KEY_ENTER':
+        import random
+        os.system('say tossing a coin')
+        time.sleep(1)
+        result = 'heads' if random.randint(0, 1) == 1 else 'tails'
+        os.system(f'say {result}')
+
     else:
         pixels[0] = (int(255 * dimmer), 0, int(255 * dimmer))
 
