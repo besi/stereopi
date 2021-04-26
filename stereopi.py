@@ -49,6 +49,12 @@ def timer(silent = False):
     else:
         os.system('sudo systemctl stop tuner')
 
+def custom_timer(duration):
+    os.system(f"say Timer {duration} minutes")
+    time.sleep(duration * 60)
+
+    os.system(f"say Timer {duration} minutes done")
+
 def playpause():
     pixels[0] = (0, 0, 0)
     os.system('/usr/bin/mpc pause &')
@@ -58,6 +64,10 @@ def button_pressed(channel):
 
 def start_timer():
     threading.Thread(target=timer).start()
+
+
+def start_custom_timer(duration):
+    threading.Thread(target=custom_timer, args=[duration]).start()
 
 def start_silent_timer():
     threading.Thread(target=timer,args=(True,)).start()
@@ -94,6 +104,8 @@ def on_key_pressed(key):
         os.system("say starting tuner")
     elif key == 'KEY_VOLUMEDOWN':
         os.system("amixer set PCM 5%-")
+    elif key == 'KEY_5':
+        start_custom_timer(5)
     elif key == 'KEY_PREVIOUSSONG':
         start_silent_timer()
     elif key == 'KEY_NEXTSONG':
