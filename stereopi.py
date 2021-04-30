@@ -63,6 +63,38 @@ def custom_timer(duration):
 
     os.system(f"say Timer {duration} minutes done")
 
+def daily_workout():
+    os.system('say Warmup')
+    time.sleep(60)
+
+    os.system('say Stand')
+    time.sleep(60)
+
+    os.system('say Dog')
+    time.sleep(60)
+
+    os.system('say Belly Ramp')
+    time.sleep(60)
+
+    os.system('say Knee head')
+    time.sleep(30)
+    os.system('say change')
+    time.sleep(30)
+
+    os.system('say Crack')
+    time.sleep(60)
+
+    os.system('say Cycle')
+    time.sleep(60)
+
+    os.system('say Baby')
+    time.sleep(60)
+
+    os.system('say Child')
+    time.sleep(60)
+    os.system("say You're done")
+
+
 def playpause():
     pixels[0] = (0, 0, 0)
     os.system('/usr/bin/mpc pause &')
@@ -79,6 +111,9 @@ def start_minute_countdown(duration):
 
 def start_custom_timer(duration):
     threading.Thread(target=custom_timer, args=[duration]).start()
+
+def start_daily_workout():
+    threading.Thread(target=daily_workout, args=[]).start()
 
 def start_silent_timer():
     threading.Thread(target=timer,args=(True,)).start()
@@ -116,7 +151,7 @@ def on_key_pressed(key):
     elif key == 'KEY_VOLUMEDOWN':
         os.system("amixer set PCM 5%-")
     elif key == 'KEY_1':
-        start_minute_countdown(10)
+        start_daily_workout()
     elif key == 'KEY_5':
         start_custom_timer(5)
     elif key == 'KEY_PREVIOUSSONG':
