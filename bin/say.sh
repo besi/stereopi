@@ -1,3 +1,3 @@
 #!/bin/sh
 
-espeak "$*" -v female3 --stdout | aplay
+espeak "$*" -v female3 --stdout | aplay --quiet
