@@ -154,6 +154,8 @@ def on_key_pressed(key):
         start_daily_workout()
     elif key == 'KEY_5':
         start_custom_timer(5)
+    elif key == 'KEY_0':
+        start_custom_timer(10)
     elif key == 'KEY_PREVIOUSSONG':
         start_silent_timer()
     elif key == 'KEY_NEXTSONG':
