@@ -12,7 +12,9 @@ curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scrip
 
 #### Sourcecode + say command
 sudo apt install git
-git clone https://github.com/besi/stereopi.git && cd stereopi
+git clone https://github.com/besi/stereopi.git
+cd stereopi
+cp dist/homedir/.bash_aliases ~
 sudo ln -s $HOME/stereopi/bin/say.sh /usr/bin/say
 chmod +x /usr/bin/say
 /usr/bin/say installed espeak
