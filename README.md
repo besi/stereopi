@@ -28,11 +28,7 @@ sudo systemctl restart shairport-sync.service
 
 [image]: https://raw.githubusercontent.com/besi/stereopi/master/stereopi.jpg
 
-
 ## Hardware
-
-### Rotary Encoder
-
 
 ### LCD
 

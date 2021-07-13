@@ -81,6 +81,13 @@ say stereopi done
 # CTRL + A + D to exit out of the screen
 
 
+# Setup display
+cd ~/stereopi
+sudo cp dist/etc/systemd/system/stereopi-display.service /etc/systemd/system/
+sudo systemctl daemon-reload
+python3 -m pip install smbus
+sudo systemctl start stereopi-display
+
 ### Bluetooth
 screen -S bluetooth
 VERSION=bluez-5.59
