@@ -1,3 +1,3 @@
 #!/bin/sh
 
-espeak "$1" -vde --stdout | aplay -D 'plughw:1'
+espeak "$*" -vde --stdout  | aplay --quiet
