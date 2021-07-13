@@ -4,35 +4,64 @@ sudo apt update
 sudo apt upgrade
 
 # Install I2S driver
+# WARNING: Only install the anti-pop-service if there is no Mems  mic attached
 curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2samp.sh | bash
 
-# curl -sS https://raw.githubusercontent.com/besi/stereopi/master/bin/setup.sh | bash
-sudo apt install git -y
-git clone https://github.com/besi/stereopi.git && cd stereopi
+# REBOOT
 
-# Install say binary
-sudo apt install espeak -y
+
+#### Sourcecode + say command
+sudo apt install git
+git clone https://github.com/besi/stereopi.git && cd stereopi
 sudo ln -s $HOME/stereopi/bin/say.sh /usr/bin/say
 chmod +x /usr/bin/say
 /usr/bin/say installed espeak
 
-# This needs to be run from the root of the project
-sudo apt install mplayer -y
-sudo apt install screen -y
-sudo apt install python3 python3-pip python3-dbus -y
+sudo apt install screen python3-pip espeak -y
+say Done installing the essentials
 
+#### PIP
+screen -S pip
 #  NeoPixel support requires running with sudo
-sudo pip3 install paho-mqtt
-sudo pip3 install evdev
-sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel
+sudo pip3 install paho-mqtt evdev install rpi_ws281x adafruit-circuitpython-neopixel
 /usr/bin/say installed python packages
+# CTRL + A + D to exit out of the screen
 
-# Disable the popping of the speaker (We don't have an I2S mic so it's fine)
-sudo cp dist/etc/systemd/system/aplay.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable aplay
+#### APT
+screen -S apt
+sudo apt install mplayer python3 python3-dbus mosquitto mosquitto-clients -y
+/usr/bin/say installed a.p.t. packages
+# CTRL + A + D to exit out of the screen
 
+#### Raspotify
+screen -S raspotify
+curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+touch /var/log/raspotify.log
+sudo ln -s /var/log/raspotify.log /home/pi/stereopi/log/raspotify.log
+sudo chown pi:pi /home/pi/stereopi/log/raspotify.log
+# CTRL + A + D to exit out of the screen
+
+
+#### Shairport AIRport support
+screen -S airplay
+# Install shairport-sync for Airplay playback
+sudo apt-get install autoconf automake avahi-daemon build-essential libasound2-dev libavahi-client-dev libconfig-dev libdaemon-dev libpopt-dev libssl-dev libtool xmltoman -y
+cd
+git clone https://github.com/mikebrady/shairport-sync.git
+cd shairport-sync
+autoreconf -i -f
+./configure --with-alsa --with-avahi --with-ssl=openssl --with-systemd --with-metadata --with-libdaemon --with-mqtt-client
+make
+sudo make install
+sudo systemctl start shairport-sync
+say airplay done
+# CTRL + A + D to exit out of the screen
+
+
+#### Stereopi SETUP
+screen -S stereopi
 # Startup the stereopi at boot
+cd ~/stereopi
 sudo cp dist/etc/systemd/system/stereopi.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable stereopi
@@ -48,23 +77,28 @@ mkfifo $HOME/.mplayer/fifo
 cp dist/homedir/.mplayer/config $HOME/.mplayer/
 sudo ln -s $HOME/stereopi/bin/mpc.sh /usr/bin/mpc
 sudo chmod +x /usr/bin/mpc
+say stereopi done
+# CTRL + A + D to exit out of the screen
 
-# Install Raspotify
-curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
-touch /var/log/raspotify.log
-sudo ln -s /var/log/raspotify.log /home/pi/stereopi/log/raspotify.log
-sudo chown pi:pi /home/pi/stereopi/log/raspotify.log
 
-# Install shairport-sync for Airplay playback
-sudo apt-get install autoconf automake avahi-daemon build-essential git libasound2-dev libavahi-client-dev libconfig-dev libdaemon-dev libpopt-dev libssl-dev libtool xmltoman -y
-cd
-git clone https://github.com/mikebrady/shairport-sync.git
-cd shairport-sync
-autoreconf -i -f
-./configure --with-alsa --with-avahi --with-ssl=openssl --with-systemd --with-metadata
-make
+### Bluetooth
+screen -S bluetooth
+VERSION=bluez-5.59
+date 
+sudo apt-get install libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev python-docutils-y
+date
+wget www.kernel.org/pub/linux/bluetooth/$VERSION.tar.xz &&  tar xvf $VERSION.tar.xz && 
+
+date
+cd $VERSION 
+./configure --prefix=/usr --mandir=/usr/share/man --sysconfdir=/etc --localstatedir=/var --enable-experimental
+make -j4
 sudo make install
-sudo service shairport-sync enable --now
+date
+say bluetooth installed please reboot
+sudo reboot
 
-# Install MQTT
-sudo apt-get install mosquitto mosquitto-clients -y
+# Set the timezone and the locale
+screen -S locale
+sudo raspi-config
+
