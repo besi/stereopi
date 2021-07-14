@@ -68,6 +68,8 @@ def update():
         mylcd.lcd_display_string(f"Timer:      {minutes}:{seconds:02d}")
 
     elif state == 'done':
+        if not dirty: return
+        dirty = False
         mylcd.lcd_clear()
         mylcd.lcd_display_string("Timer done.")
 
