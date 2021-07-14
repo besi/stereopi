@@ -13,7 +13,7 @@ GPIO.setmode(GPIO.BCM)
 switch_pin = 13
 encoder_down_pin = 6
 encoder_up_pin = 5
-minutes = 0
+minutes = 5
 dirty = True
 state = 'set'
 mylcd = lcd_i2c.lcd()
