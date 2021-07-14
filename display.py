@@ -48,7 +48,7 @@ GPIO.add_event_detect(switch_pin, GPIO.FALLING, callback=switch_pressed, bouncet
 
 
 def update():
-    global state
+    global state, minutes
 
     if state == 'set':
         global minutes, dirty
@@ -63,9 +63,9 @@ def update():
     elif state == 'timer':
         mylcd.lcd_clear()
         remaining = check_timer()
-        minutes = int(remaining / 60)
-        seconds = remaining % 60
-        mylcd.lcd_display_string(f"Timer:      {minutes}:{seconds:02d}")
+        min_remaining = int(remaining / 60)
+        sec_remaining = remaining % 60
+        mylcd.lcd_display_string(f"Timer:     {min_remaining}:{sec_remaining:02d}")
 
     elif state == 'done':
         if not dirty: return
@@ -91,6 +91,7 @@ try:
             print("Timer done")
             os.system(f'say timer {minutes} minutes done')
             state = 'done'
+            dirty = True
 
         update()
 
