@@ -81,7 +81,7 @@ def valueChanged(value):
     global dirty
 
     dirty = True
-    minutes = max(0, value)
+    minutes = max(minutes + value, 1)
 
 e1 = Encoder(encoder_down_pin, encoder_up_pin, callback=valueChanged)
 update()
