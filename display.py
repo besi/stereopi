@@ -55,7 +55,8 @@ def update():
 
         if not dirty: return
         mylcd.lcd_clear()
-        mylcd.lcd_display_string(f"Timer:    {minutes} min", 1)
+        m = f'{minutes} min'
+        mylcd.lcd_display_string(f"Timer: {m:>9}", 1)
 
         dirty = False
 
@@ -65,7 +66,8 @@ def update():
         remaining = check_timer()
         min_remaining = int(remaining / 60)
         sec_remaining = remaining % 60
-        mylcd.lcd_display_string(f"Timer:     {min_remaining}:{sec_remaining:02d}")
+        remaining_string = f"{min_remaining}:{sec_remaining:02d}"
+        mylcd.lcd_display_string(f"Timer: {remaining_string:>9}")
 
     elif state == 'done':
         if not dirty: return
