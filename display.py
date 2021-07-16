@@ -89,7 +89,7 @@ update()
 try:
     while True:
 
-        if state == 'timer' and check_timer() <= 0:
+        if state == 'timer' and check_timer() == 0:
             print("Timer done")
             os.system(f'say timer {minutes} minutes done')
             state = 'done'
