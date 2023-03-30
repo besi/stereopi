@@ -134,6 +134,8 @@ def on_key_pressed(key):
         pixels[0] = (int(255 * dimmer), int(255 * dimmer), 0)
     elif key == 'KEY_BLUE':
         pixels[0] = (0, 0, int(255 * dimmer))
+    elif key == 'KEY_MUTE':
+        playpause()
     elif key == 'KEY_PLAYPAUSE':
         playpause()
     elif key == 'KEY_VOLUMEUP':
@@ -152,6 +154,10 @@ def on_key_pressed(key):
         os.system("amixer set PCM 5%-")
     elif key == 'KEY_1':
         start_daily_workout()
+    elif key == 'KEY_3':
+        start_custom_timer(3)
+    elif key == 'KEY_4':
+        start_custom_timer(4)
     elif key == 'KEY_5':
         start_custom_timer(5)
     elif key == 'KEY_0':
