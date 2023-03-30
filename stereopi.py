@@ -92,7 +92,7 @@ def daily_workout():
 
     os.system('say Child')
     time.sleep(60)
-    os.system("say You're done")
+    os.system("say You are done")
 
 
 def playpause():
