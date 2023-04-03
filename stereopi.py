@@ -63,37 +63,26 @@ def custom_timer(duration):
 
     os.system(f"say Timer {duration} minutes done")
 
+def exercise(title, change=False):
+    os.system('say %s' % title)
+    if change:
+        time.sleep(30) 
+        os.system('say change')
+        time.sleep(30)
+    else:
+        time.sleep(60)
+
 def daily_workout():
-    os.system('say Warmup')
-    time.sleep(60)
-
-    os.system('say Stand')
-    time.sleep(60)
-
-    os.system('say Dog')
-    time.sleep(60)
-
-    os.system('say Belly Ramp')
-    time.sleep(60)
-
-    os.system('say Knee head')
-    time.sleep(30)
-    os.system('say change')
-    time.sleep(30)
-
-    os.system('say Crack')
-    time.sleep(60)
-
-    os.system('say Cycle')
-    time.sleep(60)
-
-    os.system('say Baby')
-    time.sleep(60)
-
-    os.system('say Child')
-    time.sleep(60)
-    os.system("say You are done")
-
+    os.system('say workout start')
+    exercise('Stand')
+    exercise('Squat')
+    exercise('Dog')
+    exercise('Pigeon')
+    exercise('Knee head')
+    exercise('Cycle')
+    exercise('Baby')
+    exercise('Child')
+    os.system('say You are done')
 
 def playpause():
     pixels[0] = (0, 0, 0)
@@ -154,6 +143,8 @@ def on_key_pressed(key):
         os.system("amixer set PCM 5%-")
     elif key == 'KEY_1':
         start_daily_workout()
+    elif key == 'KEY_2':
+        start_custom_timer(2)
     elif key == 'KEY_3':
         start_custom_timer(3)
     elif key == 'KEY_4':
@@ -172,9 +163,7 @@ def on_key_pressed(key):
         set_alarm(alarm)
     elif key == 'KEY_ENTER':
         import random
-        os.system('say tossing a coin')
-        time.sleep(1)
-        result = 'heads' if random.randint(0, 1) == 1 else 'tails'
+        result = 'yes' if random.randint(0, 1) == 1 else 'no'
         os.system(f'say {result}')
 
     else:
