@@ -1,4 +1,4 @@
-
+import time
 import evdev
 from selectors import DefaultSelector, EVENT_READ
 import selectors
@@ -16,16 +16,20 @@ class RemoteService(object):
 
     def start_listening(self, on_key_pressed, device_identifier = 'Swisscom'):
         all_devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
-
         devices = []
         selector = selectors.DefaultSelector()
-
+        
         while len(devices) == 0:
+            print("Found %s devices" % len(all_devices))
+            
             for device in all_devices:
                 if device_identifier in device.name:
                     devices.append(device)
                     selector.register(device, selectors.EVENT_READ)
+            time.sleep(5)
+            all_devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
 
+        print("Found %s" % devices[0])
         down = 1
         up = 0
         hold = 2
