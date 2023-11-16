@@ -74,7 +74,7 @@ def exercise(title, change=False, relax=True, delay=60):
 
     if relax:
         os.system('say relax')
-        time.sleep(delay/4)
+        time.sleep(delay/3)
 
 def daily_workout():
     exercise('workout start. . . get ready', delay=5, relax=False)
@@ -83,9 +83,14 @@ def daily_workout():
     exercise('Sit ups sideways',change=True, delay=40)
     exercise('Knee head', change=True)
     exercise('Sideways', change=True)
-    exercise('Crawl', change=True)
+    exercise('Crawl', delay=30, relax=False)
+    exercise('Hold it', delay=10, relax=False)
+    exercise('Crawl', delay=30, relax=False)
+    exercise('Hold it', delay=10, relax=False)
+    exercise('Relax', relax=False, delay=20)
     exercise('Superman', delay=40, change=True)
-    exercise('Ten Pushups', delay=18)
+    exercise('Ten Pushups', delay=20, relax=False)
+    exercise('Relax', relax=False, delay=30)
     #exercise('Squat')
     #exercise('Dog')
     #exercise('Pigeon', change=True)
