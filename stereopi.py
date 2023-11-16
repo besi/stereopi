@@ -66,15 +66,15 @@ def custom_timer(duration):
 def exercise(title, change=False, relax=True, delay=60):
     os.system('say %s' % title)
     if change:
-        time.sleep(delay/2)
+        time.sleep(delay / 2)
         os.system('say change')
-        time.sleep(delay/2)
+        time.sleep(delay / 2)
     else:
         time.sleep(delay)
 
     if relax:
         os.system('say relax')
-        time.sleep(delay/3)
+        time.sleep(delay / 2)
 
 def daily_workout():
     exercise('workout start. . . get ready', delay=5, relax=False)
