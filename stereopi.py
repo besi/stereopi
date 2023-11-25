@@ -81,7 +81,7 @@ def daily_workout():
     exercise('Stretch legs', change=True)
     exercise('Sit ups straight')
     exercise('Sit ups sideways',change=True, duration=40)
-    exercise('Knee head', change=True)
+    exercise('Knee head', duration=90, change=True)
     exercise('Sideways', change=True)
     exercise('Crawl', duration=30, relax=False)
     exercise('Hold it', duration=10, relax=False)
