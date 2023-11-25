@@ -85,7 +85,7 @@ def daily_workout():
     exercise('Sideways', change=True)
     exercise('Crawl', delay=30, relax=False)
     exercise('Hold it', delay=10, relax=False)
-    exercise('Crawl', delay=30, relax=False)
+    exercise('Change', delay=30, relax=False)
     exercise('Hold it', delay=10, relax=False)
     exercise('Relax', relax=False, delay=20)
     exercise('Superman', delay=40, change=True)
