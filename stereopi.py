@@ -163,7 +163,7 @@ def on_key_pressed(key):
     elif key == 'KEY_3':
         start_custom_timer(3)
     elif key == 'KEY_4':
-        start_custom_timer(4)
+        start_custom_timer(24)
     elif key == 'KEY_5':
         start_custom_timer(5)
     elif key == 'KEY_0':
