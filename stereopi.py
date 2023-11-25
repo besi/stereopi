@@ -63,34 +63,34 @@ def custom_timer(duration):
 
     os.system(f"say Timer {duration} minutes done")
 
-def exercise(title, change=False, relax=True, delay=60):
+def exercise(title, change=False, relax=True, duration=60):
     os.system('say %s' % title)
     if change:
-        time.sleep(delay / 2)
+        time.sleep(duration / 2)
         os.system('say change')
-        time.sleep(delay / 2)
+        time.sleep(duration / 2)
     else:
-        time.sleep(delay)
+        time.sleep(duration)
 
     if relax:
         os.system('say relax')
-        time.sleep(delay / 2)
+        time.sleep(duration / 2)
 
 def daily_workout():
-    exercise('workout start. . . get ready', delay=5, relax=False)
+    exercise('workout start. . . get ready', duration=5, relax=False)
     exercise('Stretch legs', change=True)
     exercise('Sit ups straight')
-    exercise('Sit ups sideways',change=True, delay=40)
+    exercise('Sit ups sideways',change=True, duration=40)
     exercise('Knee head', change=True)
     exercise('Sideways', change=True)
-    exercise('Crawl', delay=30, relax=False)
-    exercise('Hold it', delay=10, relax=False)
-    exercise('Change', delay=30, relax=False)
-    exercise('Hold it', delay=10, relax=False)
-    exercise('Relax', relax=False, delay=20)
-    exercise('Superman', delay=40, change=True)
-    exercise('Ten Pushups', delay=20, relax=False)
-    exercise('Relax', relax=False, delay=30)
+    exercise('Crawl', duration=30, relax=False)
+    exercise('Hold it', duration=10, relax=False)
+    exercise('Change', duration=30, relax=False)
+    exercise('Hold it', duration=10, relax=False)
+    exercise('Relax', relax=False, duration=20)
+    exercise('Superman', duration=40, change=True)
+    exercise('Ten Pushups', duration=20, relax=False)
+    exercise('Relax', relax=False, duration=30)
     #exercise('Squat')
     #exercise('Dog')
     #exercise('Pigeon', change=True)
