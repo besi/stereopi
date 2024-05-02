@@ -63,7 +63,7 @@ def custom_timer(duration):
 
     os.system(f"say Timer {duration} minutes done")
 
-def exercise(title, change=False, relax=True, duration=60):
+def exercise(title, change=False, relax=True, duration=50):
     os.system('say %s' % title)
     if change:
         time.sleep(duration / 2)
@@ -74,29 +74,28 @@ def exercise(title, change=False, relax=True, duration=60):
 
     if relax:
         os.system('say relax')
-        time.sleep(duration / 2)
+        time.sleep(duration / 3)
 
 def daily_workout():
-    exercise('workout start. . . get ready', duration=5, relax=False)
-    exercise('Stretch legs', change=True)
-    exercise('Sit ups straight')
-    exercise('Sit ups sideways',change=True, duration=40)
+    exercise('Workout start. Sit down.', duration=5, relax=False)
+
+    exercise('Pull the Belt', change=True)
+    exercise('Sit ups')
     exercise('Knee head', duration=90, change=True)
-    exercise('Sideways', change=True)
+    exercise('Side roll', change=True, duration=70)
+
+    exercise('Roll over.', duration=5, relax=False)
+    exercise('The back of a Cat')
+    exercise('Stretch legs', change=True)
+
     exercise('Crawl', duration=30, relax=False)
     exercise('Hold it', duration=10, relax=False)
     exercise('Change', duration=30, relax=False)
     exercise('Hold it', duration=10, relax=False)
     exercise('Relax', relax=False, duration=20)
-    exercise('Superman', duration=40, change=True)
+
     exercise('Ten Pushups', duration=20, relax=False)
     exercise('Relax', relax=False, duration=30)
-    #exercise('Squat')
-    #exercise('Dog')
-    #exercise('Pigeon', change=True)
-    #exercise('Cycle')
-    #exercise('Baby')
-    #exercise('Child')
     os.system('say You are done')
 
 def playpause():
