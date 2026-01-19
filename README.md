@@ -30,6 +30,19 @@ sudo systemctl restart shairport-sync.service
 
 ## Hardware
 
+### Pinout
+
+Encoder
+
+       5 Down
+       6 5V
+       25 Up
+
+Encoder Switch
+
+       13 Switch
+       16 GND
+       
 ### LCD
 
 <https://gist.github.com/DenisFromHR/cc863375a6e19dce359d>
