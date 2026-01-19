@@ -7,6 +7,7 @@ import time
 import RPi.GPIO as GPIO
 import board
 
+led_pin = board.D12
 pixels = None
 try:
     import neopixel
@@ -22,7 +23,6 @@ def setPixel(r,g,b):
         pixels[0] = (r,g,b)
 
 switch_pin = 13
-led_pin = board.D12
 
 
 
