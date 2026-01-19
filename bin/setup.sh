@@ -25,7 +25,7 @@ say Done installing the essentials
 #### PIP
 screen -S pip
 #  NeoPixel support requires running with sudo
-sudo pip3 install install adafruit-blinka rpi_ws281x adafruit-circuitpython-neopixel --break-system-packages
+sudo pip3 install adafruit-blinka rpi_ws281x adafruit-circuitpython-neopixel --break-system-packages
 
 sudo apt install python3-paho-mqtt python3-evdev -y # Pip no longer works but apt does
 
