@@ -25,7 +25,11 @@ say Done installing the essentials
 #### PIP
 screen -S pip
 #  NeoPixel support requires running with sudo
-sudo pip3 install paho-mqtt evdev install rpi_ws281x adafruit-circuitpython-neopixel
+sudo pip3 install install adafruit-blinka rpi_ws281x adafruit-circuitpython-neopixel --break-system-packages
+
+sudo apt install python3-paho-mqtt python3-evdev -y # Pip no longer works but apt does
+
+
 /usr/bin/say installed python packages
 # CTRL + A + D to exit out of the screen
 
@@ -36,11 +40,11 @@ sudo apt install mplayer python3 python3-dbus mosquitto mosquitto-clients -y
 # CTRL + A + D to exit out of the screen
 
 #### Raspotify
-screen -S raspotify
-curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
-touch /var/log/raspotify.log
-sudo ln -s /var/log/raspotify.log /home/pi/stereopi/log/raspotify.log
-sudo chown pi:pi /home/pi/stereopi/log/raspotify.log
+#screen -S raspotify
+#curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+#touch /var/log/raspotify.log
+#sudo ln -s /var/log/raspotify.log /home/pi/stereopi/log/raspotify.log
+#sudo chown pi:pi /home/pi/stereopi/log/raspotify.log
 # CTRL + A + D to exit out of the screen
 
 
@@ -94,7 +98,7 @@ sudo systemctl start stereopi-display
 screen -S bluetooth
 VERSION=bluez-5.59
 date 
-sudo apt-get install libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev python-docutils-y
+sudo apt-get install libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev python-docutils -y
 date
 wget www.kernel.org/pub/linux/bluetooth/$VERSION.tar.xz &&  tar xvf $VERSION.tar.xz && 
 
