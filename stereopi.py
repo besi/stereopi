@@ -6,14 +6,25 @@ import time
 
 import RPi.GPIO as GPIO
 import board
-import neopixel
+
+pixels = None
+try:
+    import neopixel
+    pixels = neopixel.NeoPixel(led_pin, 1)
+except:
+    print("Could not load neopixel")
 
 import wakeup
+
+
+def setPixel(r,g,b):
+    if pixels != None:
+        pixels[0] = (r,g,b)
 
 switch_pin = 13
 led_pin = board.D12
 
-pixels = neopixel.NeoPixel(led_pin, 1)
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -99,7 +110,7 @@ def daily_workout():
     os.system('say You are done')
 
 def playpause():
-    pixels[0] = (0, 0, 0)
+    setPixel(0, 0, 0)
     os.system('/usr/bin/mpc pause &')
 
 def button_pressed(channel):
@@ -130,13 +141,13 @@ def on_key_pressed(key):
     if key == 'KEY_SEARCH':
          os.system('say `sudo python3 /home/pi/stereopi/time_to_speech.py` &')
     elif key == 'KEY_RED':
-        pixels[0] = (int(255 * dimmer), 0, 0)
+        setPixel(int(255 * dimmer), 0, 0)
     elif key == 'KEY_GREEN':
-        pixels[0] = (0, int(255 * dimmer), 0)
+        setPixel(0, int(255 * dimmer), 0)
     elif key == 'KEY_YELLOW':
-        pixels[0] = (int(255 * dimmer), int(255 * dimmer), 0)
+        setPixel(int(255 * dimmer), int(255 * dimmer), 0)
     elif key == 'KEY_BLUE':
-        pixels[0] = (0, 0, int(255 * dimmer))
+        setPixel(0, 0, int(255 * dimmer))
     elif key == 'KEY_MUTE':
         playpause()
     elif key == 'KEY_PLAYPAUSE':
@@ -181,9 +192,13 @@ def on_key_pressed(key):
         os.system(f'say {result}')
 
     else:
-        pixels[0] = (int(255 * dimmer), 0, int(255 * dimmer))
+        setPixel(int(255 * dimmer), 0, int(255 * dimmer))
 
-GPIO.add_event_detect(switch_pin, GPIO.FALLING, callback=button_pressed, bouncetime=250)
+try:
+    GPIO.add_event_detect(switch_pin, GPIO.FALLING, callback=button_pressed, bouncetime=250)
+except:
+    print("Can't assign switch pin: RuntimeError: Failed to add edge detection")
+
 service = RemoteService()
 service.start_listening(on_key_pressed) # This call is blocking so we never come here
 
@@ -194,10 +209,10 @@ sleep = 0.01
 while True:
 
     if GPIO.input(switch_pin) == 0:
-        pixels[0] = (0, 0, int(255 * dimmer))
+        setPixel(0, 0, int(255 * dimmer))
     blue = abs(int(math.sin(x) * 255 * dimmer))
     red = abs(int(math.cos(x) * 255 * dimmer))
     # green = abs(int(math.cos(x + math.pi/4)*255*dimmer))
-    pixels[0] = (red, 0, blue)
+    setPixel(red, 0, blue)
     x = x + increment
     time.sleep(sleep)
