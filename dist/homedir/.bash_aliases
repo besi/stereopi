@@ -1,0 +1,1 @@
+alias susy="sudo systemctl $*"
