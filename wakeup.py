@@ -1,18 +1,21 @@
 import datetime
 import os
 import time
-
-is_active = False
-
 from datetime import datetime, time
 from time import sleep
 
+is_active = False
+
+
 def wait_start(runTime):
-    startTime = time(*(map(int, runTime.split(':'))))
-    while startTime > datetime.today().time():  # you can add here any additional variable to break loop if necessary
+    alarm = time(*(map(int, runTime.split(':'))))
+    now = datetime.today().time()
+    
+    while alarm.hour != now.hour and alarm.minute != now.minute:
+        now = datetime.today().time()
         sleep(15)
 
-    os.system('say good morning')
+    os.system('say good morning it is %s and %s minutes' %(now.hour, now.minute))
     os.system('sudo systemctl restart tuner')
 
 

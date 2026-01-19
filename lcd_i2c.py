@@ -21,10 +21,15 @@ I2CBUS = 1
 # LCD Address
 ADDRESS = 0x27
 
+<<<<<<< HEAD
 from time import sleep
 
 import smbus
 
+=======
+import smbus
+from time import sleep
+>>>>>>> 88afa1f2ac631e1769045da20c66def7166b3e24
 
 class i2c_device:
    def __init__(self, addr, port=I2CBUS):
