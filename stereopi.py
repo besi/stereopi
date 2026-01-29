@@ -88,17 +88,16 @@ def exercise(title, change=False, relax=True, duration=50):
         time.sleep(duration / 3)
 
 def daily_workout():
-    exercise('Workout start. Sit down.', duration=5, relax=False)
+    exercise('Workout start', duration=5, relax=False)
 
-    exercise('Pull the Belt', change=True)
+    exercise('Bicycle')
     exercise('Sit ups')
-    exercise('Knee head', duration=90, change=True)
-    exercise('Side roll', change=True, duration=70)
+    exercise('Side kink', change=True)
 
     exercise('Roll over.', duration=5, relax=False)
-    exercise('The back of a Cat')
-    exercise('Stretch legs', change=True)
-
+    exercise('back of a Cat')
+    exercise('Knee up', duration=60, change=True)
+    
     exercise('Crawl', duration=30, relax=False)
     exercise('Hold it', duration=10, relax=False)
     exercise('Change', duration=30, relax=False)
@@ -106,7 +105,7 @@ def daily_workout():
     exercise('Relax', relax=False, duration=20)
 
     exercise('Ten Pushups', duration=20, relax=False)
-    exercise('Relax', relax=False, duration=30)
+    exercise('Relax', relax=False, duration=20)
     os.system('say You are done')
 
 def playpause():
