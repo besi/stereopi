@@ -151,8 +151,12 @@ def on_key_pressed(key):
     elif key == 'KEY_BLUE':
         setPixel(0, 0, int(255 * dimmer))
         os.system('mpc loadfile http://stream.radioparadise.com/mellow-128')
+    elif key == 'KEY_CHANNELUP':
+        os.system("curl 'http://192.168.1.200/light/0/?turn=on&brightness=100'")
+    elif key == 'KEY_CHANNELDOWN':
+        os.system("curl 'http://192.168.1.200/light/0/?turn=on&brightness=1'")
     elif key == 'KEY_MUTE':
-        playpause()
+        os.system('/usr/bin/mpc mute')
     elif key == 'KEY_PLAYPAUSE':
         playpause()
     elif key == 'KEY_VOLUMEUP':
