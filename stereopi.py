@@ -68,11 +68,15 @@ def minute_countdown(duration):
     os.system('say You are done')
 
 
-def custom_timer(duration):
-    os.system(f"say Timer {duration} minutes")
-    time.sleep(duration * 60)
-
-    os.system(f"say Timer {duration} minutes done")
+def custom_timer(duration, label = None):
+    if label:
+        os.system(f"say Timer {label}")
+        time.sleep(duration * 60)
+        os.system(f"say Timer {label} done")
+    else:
+        os.system(f"say Timer {duration} minutes")
+        time.sleep(duration * 60)
+        os.system(f"say Timer {duration} minutes done")
 
 def exercise(title, change=False, relax=True, duration=50):
     os.system('say %s' % title)
@@ -122,8 +126,8 @@ def start_timer():
 def start_minute_countdown(duration):
     threading.Thread(target=minute_countdown, args=[duration]).start()
 
-def start_custom_timer(duration):
-    threading.Thread(target=custom_timer, args=[duration]).start()
+def start_custom_timer(duration, label = None):
+    threading.Thread(target=custom_timer, args=[duration, label]).start()
 
 def start_daily_workout():
     threading.Thread(target=daily_workout, args=[]).start()
@@ -178,6 +182,9 @@ def on_key_pressed(key):
         os.system("say starting tuner")
     elif key == 'KEY_VOLUMEDOWN':
         os.system("amixer set PCM 5%-")
+    elif key == 'KEY_LAST':
+        start_custom_timer(60, 'washing')
+        start_custom_timer(110 + 60, 'tumbler')
     elif key == 'KEY_1':
         start_daily_workout()
     elif key == 'KEY_2':
