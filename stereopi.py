@@ -159,6 +159,10 @@ def on_key_pressed(key):
         os.system('/usr/bin/mpc mute')
     elif key == 'KEY_PLAYPAUSE':
         playpause()
+    elif key == 'KEY_PLAYPAUSE':
+        os.system("sudo systemctl stop tuner")
+        os.system("curl 'http://192.168.1.200/light/0/?turn=off'")
+        os.system("curl 'http://192.168.1.201/light/0/?turn=off'")
     elif key == 'KEY_VOLUMEUP':
         os.system("amixer set PCM 5%+")
     elif key == 'KEY_RECORD':
