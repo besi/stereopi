@@ -145,6 +145,7 @@ def on_key_pressed(key):
         setPixel(0, int(255 * dimmer), 0)
     elif key == 'KEY_YELLOW':
         setPixel(int(255 * dimmer), int(255 * dimmer), 0)
+        os.system('curl http://192.168.1.200/light/0/?turn=toggle')
     elif key == 'KEY_BLUE':
         setPixel(0, 0, int(255 * dimmer))
     elif key == 'KEY_MUTE':
