@@ -78,7 +78,7 @@ def custom_timer(duration, label = None):
         time.sleep(duration * 60)
         os.system(f"say Timer {duration} minutes done")
 
-def exercise(title, change=False, relax=True, duration=50):
+def exercise(title, change=False, relax=True, duration=40):
     os.system('say %s' % title)
     if change:
         time.sleep(duration / 2)
@@ -95,21 +95,20 @@ def daily_workout():
     exercise('Workout start', duration=5, relax=False)
 
     exercise('Bicycle')
-    exercise('Sit ups')
     exercise('Side kink', change=True)
 
-    exercise('Roll over.', duration=5, relax=False)
-    exercise('back of a Cat')
+    exercise('Roll over.', duration=2, relax=False)
+    exercise('back of a Cat', relax=False)
     exercise('Knee up', duration=60, change=True)
     
-    exercise('Crawl', duration=30, relax=False)
+    exercise('Crawl', duration=20, relax=False)
     exercise('Hold it', duration=10, relax=False)
-    exercise('Change', duration=30, relax=False)
+    exercise('Change', duration=20, relax=False)
     exercise('Hold it', duration=10, relax=False)
     exercise('Relax', relax=False, duration=20)
 
-    exercise('Ten Pushups', duration=20, relax=False)
-    exercise('Relax', relax=False, duration=20)
+    exercise('Ten Pushups', duration=15, relax=False)
+    exercise('Relax', relax=False, duration=15)
     os.system('say You are done')
 
 def playpause():
