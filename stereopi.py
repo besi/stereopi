@@ -139,6 +139,7 @@ def on_key_pressed(key):
     if key == 'KEY_': pass
     if key == 'KEY_FASTFORWARD': os.system('curl -X POST "https://api.spotify.com/v1/me/player/next" -H "Authorization: Bearer BQDy-sPybW8wtFbDhA9VfbTN1PSnoNZ6RHTzQrykoQgbvSXiSjbpotv3Tx6QzVzFt0WtNYXBgANRULfVczCpq9tjNfw_wpSMRwFNhW4fLyBXODHcs-r_C8JSQwyhcSIHdjS7ntgGE7scyAg" &')
     if key == 'KEY_REWIND': os.system('curl -X POST "https://api.spotify.com/v1/me/player/previous" -H "Authorization: Bearer BQDy-sPybW8wtFbDhA9VfbTN1PSnoNZ6RHTzQrykoQgbvSXiSjbpotv3Tx6QzVzFt0WtNYXBgANRULfVczCpq9tjNfw_wpSMRwFNhW4fLyBXODHcs-r_C8JSQwyhcSIHdjS7ntgGE7scyAg" &')
+    if key == 'KEY_PROGRAM': os.system('say `sudo python3 /home/pi/stereopi/random_tarot.py` &')
     if key == 'KEY_BACK':
         os.system("sudo systemctl stop tuner")
         os.system("curl 'http://192.168.1.200/light/0/?turn=off'")
