@@ -31,6 +31,7 @@ GPIO.setup(switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 print("Starting...")
+os.system('systemctl start aplay')
 dimmer = .04
 
 from remote_service import RemoteService
