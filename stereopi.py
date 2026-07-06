@@ -31,7 +31,6 @@ GPIO.setup(switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 print("Starting...")
-os.system('systemctl start aplay')
 dimmer = .04
 
 from remote_service import RemoteService
@@ -222,6 +221,7 @@ except:
 
 service = RemoteService()
 service.start_listening(on_key_pressed) # This call is blocking so we never come here
+os.system('systemctl start aplay')
 
 x = 0
 increment = 0.1
