@@ -196,6 +196,14 @@ def on_key_pressed(key):
         start_custom_timer(24)
     elif key == 'KEY_5':
         start_custom_timer(5)
+    elif key == 'KEY_6':
+        start_custom_timer(60)
+    elif key == 'KEY_7':
+        start_custom_timer(7)
+    elif key == 'KEY_8':
+        start_custom_timer(28)
+    elif key == 'KEY_9':
+        start_custom_timer(90)
     elif key == 'KEY_0':
         start_custom_timer(10)
     elif key == 'KEY_PREVIOUSSONG':
