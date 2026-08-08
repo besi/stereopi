@@ -92,23 +92,23 @@ def exercise(title, change=False, relax=True, duration=40):
         time.sleep(duration / 3)
 
 def daily_workout():
-    exercise('Workout start', duration=2, relax=False)
+    exercise('Workout start', duration=1, relax=False)
 
     exercise('Stand', relax=False)
     exercise('Dog', relax=False)
     exercise('Knee up', duration=60, change=True)
     exercise('Side kink', change=True)
-    exercise('the back of a Cat', relax=False)
-
     exercise('Bicycle')
-    
+
+    exercise('The back of a Cat', relax=False)
+
     exercise('Crawl', duration=20, relax=False)
     exercise('Hold it', duration=10, relax=False)
     exercise('Change', duration=20, relax=False)
     exercise('Hold it', duration=10, relax=False)
     exercise('Relax', relax=False, duration=20)
 
-    exercise('Ten Pushups', duration=15, relax=False)
+    exercise('Ten Pushups', duration=18, relax=False)
     exercise('Relax', relax=False, duration=15)
     os.system('say You are done')
 
